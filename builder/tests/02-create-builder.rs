@@ -52,6 +52,17 @@ pub struct Command {
     current_dir: String,
 }
 
+impl Command {
+    fn builder() -> Self{
+        Self {
+            executable: String::new(),
+            args: Vec::new(),
+            env: Vec::new(),
+            current_dir: String::new()
+        }
+    }
+}
+
 fn main() {
     let builder = Command::builder();
 

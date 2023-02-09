@@ -62,6 +62,41 @@ pub struct Command {
     current_dir: Option<String>,
 }
 
+impl Command {
+    fn builder() -> Self{
+        Self {
+            executable: String::new(),
+            args: Vec::new(),
+            env: Vec::new(),
+            current_dir: None
+        }
+    }
+
+    fn executable(mut self, new: String) -> Self{
+        self.executable = new;
+        self
+    }
+
+    fn args(mut self, new: Vec<String>) -> Self {
+        self.args = new;
+        self
+    }
+
+    fn env(mut self, new: Vec<String>) -> Self {
+        self.env = new;
+        self
+    }
+
+    fn current_dir(mut self, new: String) -> Self {
+        self.current_dir = Some(new);
+        self
+    }
+
+    fn build(self) -> Result<Self, ()>{
+        Ok(self)
+    }
+}
+
 fn main() {
     let command = Command::builder()
         .executable("cargo".to_owned())
